@@ -50,3 +50,14 @@ void SimObject::printCharacteristics() const {
     std::cout<<"Acc "<<acceleration.first<<" "<<acceleration.second<<std::endl;
     std::cout<<"Weight "<<weight<<std::endl<<std::endl;
 }
+
+std::pair<double,double> SimObject::countNewSpeeds(const double &th_speed, const double &obj_speed,
+        const double& th_weight, const double& obj_weight) {
+    double s1 = (2 * obj_weight * obj_speed + th_speed * (th_weight - obj_weight))
+    /
+    (th_weight + obj_weight);
+    double s2 = (2 * th_weight * th_speed + obj_speed * (obj_weight - th_weight))
+                        /
+                        (th_weight + obj_weight);
+    return {s1,s2};
+}

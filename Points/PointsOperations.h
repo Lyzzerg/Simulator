@@ -28,6 +28,7 @@ public:
     static bool checkPointIn(const std::pair<Point,Point>& vec, const Point& p);
     static double cross(const Point& a, const Point& b);
     static turn_t turn(const Point& a,const Point& b,const Point& c);
+    static double euclidianNorm(const Point& vec);
 
     //i've already no time to make this, so.... RIP
     void countConvexHull();

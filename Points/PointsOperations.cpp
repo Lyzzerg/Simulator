@@ -71,3 +71,7 @@ turn_t PointsOperations::turn(const Point &a, const Point &b, const Point &c) {
     }
     return collinear;
 }
+
+double PointsOperations::euclidianNorm(const Point & vec) {
+    return sqrt(pow(vec.first, 2) + pow(vec.second, 2));
+}

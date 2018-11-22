@@ -48,8 +48,12 @@ public:
     Points getPoints() const { return points; }
     Points getConvexHull() const { return convexHull; }
     Point getAcceleration() const { return acceleration; }
-    void setNewAcceleration(const Point& new_acc){acceleration=new_acc;}
     double getWeight() const { return weight; }
+
+    void setNewAcceleration(const Point& new_acc){acceleration=new_acc;}
+
+    static std::pair<double,double> countNewSpeeds(const double &th_speed, const double &obj_speed,
+            const double& th_weight, const double& obj_weight);
 
     void printCharacteristics() const;
 

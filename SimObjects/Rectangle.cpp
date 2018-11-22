@@ -119,21 +119,13 @@ bool Rectangle::isIntersection(const SimObject *object) const {
 }
 
 void Rectangle::impulseBehavior(SimObject *object) {
-    double speed1 = sqrt(pow(acceleration.first,2)+pow(acceleration.second,2));
-    double speed2 = sqrt(pow(object->getAcceleration().first,2)+pow(object->getAcceleration().second,2));
+    double speed1 = PointsOperations::euclidianNorm(acceleration);
+    double speed2 = PointsOperations::euclidianNorm(object->getAcceleration());
 
     Point acc_norm1 = Point(acceleration.first/speed1,acceleration.second/speed1);
     Point acc_norm2 = Point(object->getAcceleration().first/speed2, object->getAcceleration().second/speed2);
 
-
-    double speed1_new =  (2* object->getWeight()*speed2+speed1*(weight- object->getWeight()))
-                         /
-                         (weight + object->getWeight());
-    double speed2_new =  (2*weight*speed1+speed2*(object->getWeight()-weight))
-                         /
-                         (weight + object->getWeight());
-
-
+    auto speeds_new = countNewSpeeds(speed1,speed2,weight,object->getWeight());
 
     Points obj_p = object->getPoints();
     if (this->weight == INT8_MAX && obj_p.size()==1) { //wall+circle
@@ -163,8 +155,8 @@ void Rectangle::impulseBehavior(SimObject *object) {
     }
 
     if(this->weight != INT8_MAX && object->getWeight()!=INT8_MAX) {
-        this->setNewAcceleration(Point((acc_norm1.first * speed1_new), (acc_norm1.second * speed1_new)));
-        object->setNewAcceleration(Point((acc_norm2.first * speed2_new), (acc_norm2.second * speed2_new)));
+        this->setNewAcceleration(Point((acc_norm1.first * speeds_new.first), (acc_norm1.second * speeds_new.first)));
+        object->setNewAcceleration(Point((acc_norm2.first * speeds_new.second), (acc_norm2.second * speeds_new.second)));
     }else if(this->weight == INT8_MAX){
         object->setNewAcceleration(Point((acc_norm2.first * speed2), (acc_norm2.second * speed2)));
     } else if(object->getWeight() == INT8_MAX){
