@@ -18,6 +18,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
+    void impulseBehavior(SimObject* object) override;
+
     bool isIntersection(const SimObject* object) const override;
 
     explicit Rectangle(const Point& center_,const double& width_ = DEFAULT_SIZE, const double& height_=DEFAULT_SIZE,

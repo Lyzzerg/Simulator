@@ -38,7 +38,7 @@ protected:
 public:
 
     void defaultBehavior(const int &simulation_speed);
-    virtual void impulseBehavior(SimObject *object);
+    virtual void impulseBehavior(SimObject *object)=0;
 
     virtual Points getProjection(const Point* normal) const;
 

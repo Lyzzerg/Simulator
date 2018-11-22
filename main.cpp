@@ -49,13 +49,5 @@ int main(int argc, char *argv[]) {
     view->show();
     timer->start(1);
     QObject::connect(simulator,SIGNAL(objects_moved()),scene,SLOT(update()));
-    //Circle *circle2 = new Circle(Point(3,3),1, Point(4,4),10);
-    //Rectangle *rectangle1 = new Rectangle();
-    //simulator->add_object_to_simulation(circle2);
-    //simulator->add_object_to_simulation(rectangle1);
-    //simulator->start_simulation();
-    //simulator->remove_object_from_simulation(rectangle1);
-    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    //simulator->stop_simulation();
     return a.exec();
 }
